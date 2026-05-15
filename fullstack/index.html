@@ -311,15 +311,26 @@
       btn.classList.add('loading');
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating…';
 
+      // Hide button so it doesn't appear in the PDF
+      btn.style.visibility = 'hidden';
+
+      const source = document.querySelector('.page');
+
+      // Clone and strip screen margin so PDF starts flush at top
+      const clone = source.cloneNode(true);
+      clone.style.margin = '0';
+      clone.style.boxShadow = 'none';
+
       const opt = {
-        margin:      0,
+        margin:      [1, 0, 1, 0],   // [top, right, bottom, left] in cm — adds padding on page breaks
         filename:    'Ton-Thanh-Hung-Fullstack-CV.pdf',
         image:       { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true, letterRendering: true },
         jsPDF:       { unit: 'cm', format: 'a4', orientation: 'portrait' }
       };
 
-      html2pdf().set(opt).from(document.querySelector('.page')).save().then(function () {
+      html2pdf().set(opt).from(clone).save().then(function () {
+        btn.style.visibility = 'visible';
         btn.classList.remove('loading');
         btn.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i> Download PDF';
       });
