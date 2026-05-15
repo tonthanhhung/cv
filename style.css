@@ -229,6 +229,40 @@ a:hover {
   font-style: italic;
 }
 
+/* ---------- download button ---------- */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 5pt;
+  margin-top: 7pt;
+  padding: 4pt 10pt;
+  font-family: inherit;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: #fff;
+  background: #222;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.btn-download:hover {
+  background: #444;
+  text-decoration: none;
+}
+
+.btn-download i {
+  font-size: 8pt;
+  color: #fff;
+}
+
+.btn-download.loading {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* ============================================================
    PRINT STYLES
    ============================================================ */
@@ -236,6 +270,10 @@ a:hover {
   body {
     background: none;
     font-size: 10pt;
+  }
+
+  .btn-download {
+    display: none;
   }
 
   .page {
